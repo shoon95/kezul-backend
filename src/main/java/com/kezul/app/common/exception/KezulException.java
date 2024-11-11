@@ -2,7 +2,7 @@ package com.kezul.app.common.exception;
 
 import lombok.Getter;
 
-
+@Getter
 public class KezulException extends RuntimeException{
     private final ErrorCode errorCode;
 
