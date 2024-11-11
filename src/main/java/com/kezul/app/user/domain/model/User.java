@@ -8,7 +8,8 @@ import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
-@Entity(name = "users")
+@Entity
+@Table(name = "users")
 @NoArgsConstructor
 @Getter
 public class User extends BaseEntity {
@@ -23,14 +24,25 @@ public class User extends BaseEntity {
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String phoneNumber;
 
     @Column(nullable = false)
     @Enumerated(value = EnumType.STRING)
     private UserRole role;
+
+
+    public static User of(String username, String password, String email, String phoneNumber, UserRole userRole) {
+        User user = new User();
+        user.username = username;
+        user.password = password;
+        user.email = email;
+        user.phoneNumber = phoneNumber;
+        user.role = userRole;
+        return user;
+    }
 
 }
